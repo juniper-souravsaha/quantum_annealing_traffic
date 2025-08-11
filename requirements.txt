@@ -1,0 +1,7 @@
+numpy
+matplotlib
+networkx
+tqdm
+seaborn
+pandas
+jupyter
