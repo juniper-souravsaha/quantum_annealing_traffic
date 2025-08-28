@@ -1,10 +1,12 @@
 import itertools
-import pandas as pd
-import matplotlib.pyplot as plt
 
-from src.graph_setup import build_toy_graph, generate_demands, enumerate_candidate_paths
-from src.annealing import simulated_annealing, compute_capacity_violation
-from src.baselines import shortest_path_baseline, random_routing_baseline
+import matplotlib.pyplot as plt
+import pandas as pd
+
+from src.annealing import compute_capacity_violation, simulated_annealing
+from src.baselines import random_routing_baseline, shortest_path_baseline
+from src.graph_setup import (build_toy_graph, enumerate_candidate_paths,
+                             generate_demands)
 
 
 def run_extended_sweep(

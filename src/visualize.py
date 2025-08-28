@@ -4,6 +4,7 @@ import numpy as np
 from matplotlib.cm import ScalarMappable
 from matplotlib.colors import Normalize
 
+
 def plot_network(G, best_paths):
     pos = nx.spring_layout(G)
     

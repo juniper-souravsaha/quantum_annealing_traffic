@@ -1,5 +1,6 @@
-import networkx as nx
 import random
+
+import networkx as nx
 
 
 def build_toy_graph():

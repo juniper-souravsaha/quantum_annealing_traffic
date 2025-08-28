@@ -1,5 +1,7 @@
 import random
+
 import networkx as nx
+
 
 def generate_demand(G, num_vehicles=20):
     nodes = list(G.nodes())

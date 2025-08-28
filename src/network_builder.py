@@ -1,5 +1,7 @@
 import networkx as nx
+
 from .network_config import ROAD_NETWORK
+
 
 def build_network():
     """Builds and returns a NetworkX graph from ROAD_NETWORK."""

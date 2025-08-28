@@ -1,11 +1,13 @@
 import argparse
+
 import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 
-from src.graph_setup import build_large_graph, generate_demands, enumerate_candidate_paths
-from src.annealing import simulated_annealing, compute_capacity_violation
+from src.annealing import compute_capacity_violation, simulated_annealing
 from src.baselines import shortest_path_baseline
+from src.graph_setup import (build_large_graph, enumerate_candidate_paths,
+                             generate_demands)
 
 
 def run_demo(grid_size=6, num_demands=50, episodes=150, penalty=10.0, k_paths=3, seed=42):

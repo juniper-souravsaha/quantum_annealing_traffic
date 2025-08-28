@@ -1,5 +1,6 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+
 
 def analyze_log(log_csv="sa_log.csv", out_png="sa_plot.png"):
     # Load the CSV

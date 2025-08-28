@@ -1,10 +1,10 @@
 import random
+
 import networkx as nx
-from .annealing import (
-    compute_edge_loads_from_state,
-    objective_cost,
-    compute_capacity_violation,
-)
+
+from .annealing import (compute_capacity_violation,
+                        compute_edge_loads_from_state, objective_cost)
+
 
 def shortest_path_baseline(G, demands, candidate_lists, congestion_penalty_coef=10.0):
     """

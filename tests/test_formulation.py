@@ -1,5 +1,9 @@
 import networkx as nx
-from src.formulation import compute_edge_loads_from_state, k_shortest_candidates, random_initial_state, objective_cost
+
+from src.formulation import (compute_edge_loads_from_state,
+                             k_shortest_candidates, objective_cost,
+                             random_initial_state)
+
 
 def tiny_graph():
     G = nx.Graph()

@@ -5,8 +5,5 @@ This project aims to minimize traffic congestion in a small simulated city using
 
 sample run cmd:
 
-python src/main.py --episodes 50 --temp_start 100 --temp_end 1
-
-python tests/test_network.py
-
-python tests/trip_simulation.py
+pip install -e .
+python experiments/run_demo.py --grid 4 --demands 20 --episodes 50

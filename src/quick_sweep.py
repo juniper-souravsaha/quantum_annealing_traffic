@@ -1,9 +1,12 @@
 import os
-import pandas as pd
-from src.network_builder import build_network
-from src.formulation import k_shortest_candidates
-from src.annealing import simulated_annealing
 import random
+
+import pandas as pd
+
+from src.annealing import simulated_annealing
+from src.formulation import k_shortest_candidates
+from src.network_builder import build_network
+
 
 def build_random_demand(G, n=25, seed=7):
     rnd = random.Random(seed)

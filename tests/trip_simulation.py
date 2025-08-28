@@ -1,6 +1,9 @@
 import random
+
 import networkx as nx
+
 from src.network_builder import build_network
+
 
 def simulate_trips(num_trips=5):
     """

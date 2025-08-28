@@ -1,7 +1,9 @@
+import math
 import random
 from collections import Counter, defaultdict
+
 import networkx as nx
-import math
+
 
 def k_shortest_candidates(G, demand, k=6, weight='time', cutoff=None):
     """

@@ -1,12 +1,10 @@
+import csv
 import math
 import random
-import csv
-from src.formulation import (
-    compute_edge_loads_from_state,
-    objective_cost,
-    sa_neighbor,
-    random_initial_state,
-)
+
+from src.formulation import (compute_edge_loads_from_state, objective_cost,
+                             random_initial_state, sa_neighbor)
+
 
 def simulated_annealing(
     G,
