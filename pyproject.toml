@@ -17,6 +17,10 @@ dependencies = [
   "pandas",
   "qiskit",
   "dimod",
+  "dwave-ocean-sdk",
+  "docplex",
+  "qiskit-algorithms",
+  "qiskit_optimization",
 ]
 
 [tool.setuptools.packages.find]
