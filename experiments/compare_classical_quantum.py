@@ -33,11 +33,11 @@ def compare_experiment(grid_size=4, num_demands=10, episodes=50, penalty=10.0, k
     # Quantum: QUBO build
     bqm = build_qubo(G, demands, candidate_lists)
 
-    sol, energy = solve_dwave(bqm)
-    print("Quantum D-Wave:", energy, sol)
+    # sol, energy = solve_dwave(bqm)
+    # print("Quantum D-Wave:", energy, sol)
 
     # Try QAOA
-    sol, val = solve_qaoa(bqm)
+    sol, val = solve_qaoa(bqm, reps=1, maxiter=20, optimizer_name="COBYLA")
     print("Quantum QAOA:", val, sol)
 
 if __name__ == "__main__":
