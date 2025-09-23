@@ -63,9 +63,9 @@ def run_experiment():
         # ---------------------------
         # Plot Solutions
         # ---------------------------
-        # plot_solution(G, sa_sol, title=f"Classical SA (val={sa_val:.2f})")
-        # if qaoa_costs[-1] is not np.nan:
-        #     plot_solution(G, q_sol, title=f"Quantum QAOA (val={q_val:.2f})")
+        plot_solution(G, sa_sol, title=f"Classical SA (val={sa_val:.2f})")
+        if qaoa_costs[-1] is not np.nan:
+            plot_solution(G, q_sol, title=f"Quantum QAOA (val={q_val:.2f})")
 
     # ---------------------------
     # Summary Across Sizes
@@ -79,7 +79,7 @@ def run_experiment():
     # ---------------------------
     # Plot Results
     # ---------------------------
-    # plot_results(sizes, sa_costs, qaoa_costs, sa_times, qaoa_times)
+    plot_results(sizes, sa_costs, qaoa_costs, sa_times, qaoa_times)
 
 
 # ---------------------------

@@ -84,11 +84,13 @@ pip install -r requirements.txt
 ```
 
 ### Run comparison experiment
+- compare_classical_quantum takes single grid_size as input to run.
 ```
 python experiments/compare_classical_quantum.py
 ```
 
 ### Run scalability demo
+- demo_scalability takes multiple grid_size as input to create a comparision graph.
 ```
 python experiments/demo_scalability.py
 ```
