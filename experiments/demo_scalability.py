@@ -18,9 +18,10 @@ logger = logging.getLogger("experiment")
 # Experiment Runner
 # ---------------------------
 def run_experiment():
-    sizes = [4]  # keep small for demo
+    sizes = [3, 4, 5]  # keep small for demo
     sa_times, qaoa_times = [], []
     sa_costs, qaoa_costs = [], []
+    sa_solutions, qaoa_solutions = [], []
     seed = 42
     k_paths = 3  # candidate paths per demand
 
@@ -29,7 +30,7 @@ def run_experiment():
         G = build_large_graph(grid_size=n, seed=seed)
         logger.info(f"Built {n}x{n} grid with {len(G.nodes)} nodes and {len(G.edges)} edges")
 
-        demands = generate_demands(G, num_demands=6, seed=seed)
+        demands = generate_demands(G, num_demands=4, seed=seed)
         logger.info(f"Generated {len(demands)} demands")
 
         candidate_lists = enumerate_candidate_paths(G, demands, k=k_paths)
@@ -42,6 +43,7 @@ def run_experiment():
         sa_sol, sa_val = solve_sa(bqm)
         sa_times.append(time.time() - t0)
         sa_costs.append(sa_val)
+        sa_solutions.append(sa_sol)
         logger.info(f"SA: value={sa_val:.2f}, time={sa_times[-1]:.2f}s")
         log_solution_summary(sa_sol, "SA")
 
@@ -53,6 +55,7 @@ def run_experiment():
             q_sol, q_val = solve_qaoa(bqm, reps=1, maxiter=20, optimizer_name="COBYLA")
             qaoa_times.append(time.time() - t0)
             qaoa_costs.append(q_val)
+            qaoa_solutions.append(q_sol)
             logger.info(f"QAOA: value={q_val:.2f}, time={qaoa_times[-1]:.2f}s")
             log_solution_summary(q_sol, "QAOA")
         except Exception as e:
@@ -60,21 +63,19 @@ def run_experiment():
             qaoa_times.append(None)
             qaoa_costs.append(np.nan)
 
-        # ---------------------------
-        # Plot Solutions
-        # ---------------------------
-        plot_solution(G, sa_sol, title=f"Classical SA (val={sa_val:.2f})")
-        if qaoa_costs[-1] is not np.nan:
-            plot_solution(G, q_sol, title=f"Quantum QAOA (val={q_val:.2f})")
-
     # ---------------------------
     # Summary Across Sizes
+    # Plot Solutions
     # ---------------------------
     logger.info("\n=== Experiment Summary ===")
     for i, n in enumerate(sizes):
         logger.info(f"Network size {n}: "
                     f"SA value={sa_costs[i]:.2f}, SA time={sa_times[i]:.2f}s | "
                     f"QAOA value={qaoa_costs[i]:.2f}, QAOA time={qaoa_times[i]}")
+        plot_solution(G, sa_solutions[i], title=f"Classical SA (val={sa_costs[i]:.2f})")
+        if qaoa_costs[-1] is not np.nan:
+            plot_solution(G, qaoa_solutions[i], title=f"Quantum QAOA (val={qaoa_costs[i]:.2f})")
+    logger.info("=== End of Experiment ===")
 
     # ---------------------------
     # Plot Results

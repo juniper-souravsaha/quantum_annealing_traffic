@@ -84,16 +84,15 @@ pip install -r requirements.txt
 ```
 
 ### Run comparison experiment
-- compare_classical_quantum takes single grid_size as input to run.
-```
-python experiments/compare_classical_quantum.py
-```
 
 ### Run scalability demo
 - demo_scalability takes multiple grid_size as input to create a comparision graph.
 ```
 python experiments/demo_scalability.py
 ```
+![classical solution](<Screenshot 2025-09-25 at 6.00.48 PM.png>)
+![quantum solution](<Screenshot 2025-09-25 at 6.00.57 PM.png>)
+![runtime comparision](<Screenshot 2025-09-25 at 6.01.26 PM.png>)
 
 ## 📚 9. References
     - [Qiskit Optimization](https://qiskit.org/documentation/optimization/)
