@@ -19,22 +19,25 @@ logger = logging.getLogger("experiment")
 # ---------------------------
 def run_experiment():
     sizes = [3, 4, 5]  # keep small for demo
+    demands_per_size = [4, 5, 6]  # number of demands per size
     sa_times, qaoa_times = [], []
     sa_costs, qaoa_costs = [], []
     sa_solutions, qaoa_solutions = [], []
+    graphs = []
     seed = 42
     k_paths = 3  # candidate paths per demand
 
-    for n in sizes:
+    for i, n in enumerate(sizes):
         logger.info(f"\n=== Running for network size {n} ===")
         G = build_large_graph(grid_size=n, seed=seed)
         logger.info(f"Built {n}x{n} grid with {len(G.nodes)} nodes and {len(G.edges)} edges")
 
-        demands = generate_demands(G, num_demands=4, seed=seed)
+        demands = generate_demands(G, num_demands=demands_per_size[i], seed=seed)
         logger.info(f"Generated {len(demands)} demands")
 
         candidate_lists = enumerate_candidate_paths(G, demands, k=k_paths)
         bqm = build_qubo(G, demands, candidate_lists)
+        graphs.append(G)
 
         # ---------------------------
         # Classical SA
@@ -72,9 +75,9 @@ def run_experiment():
         logger.info(f"Network size {n}: "
                     f"SA value={sa_costs[i]:.2f}, SA time={sa_times[i]:.2f}s | "
                     f"QAOA value={qaoa_costs[i]:.2f}, QAOA time={qaoa_times[i]}")
-        plot_solution(G, sa_solutions[i], title=f"Classical SA (val={sa_costs[i]:.2f})")
+        plot_solution(graphs[i], sa_solutions[i], title=f"Classical SA (val={sa_costs[i]:.2f})")
         if qaoa_costs[-1] is not np.nan:
-            plot_solution(G, qaoa_solutions[i], title=f"Quantum QAOA (val={qaoa_costs[i]:.2f})")
+            plot_solution(graphs[i], qaoa_solutions[i], title=f"Quantum QAOA (val={qaoa_costs[i]:.2f})")
     logger.info("=== End of Experiment ===")
 
     # ---------------------------
